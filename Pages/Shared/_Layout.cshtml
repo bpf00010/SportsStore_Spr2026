@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SportsStore_Spr2026</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  <!-- Bootstrap CSS, the root folder, all of the styles are defined here. -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SportsStore_Spr2026.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <!-- This is the navigation bar, it is a component that is used to navigate through the website. It is a responsive design, it will collapse on smaller screens. -->
+            <!-- These classes are seperate ideas defined in the bootstrap.css which defines the main theme behind said classes-->
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">SportsStore_Spr2026</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" <!--This is a button that will toggle the navigation bar on smaller screens. It is a responsive design, it will collapse on smaller screens. also known as the nav button-->
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <!-- This is the home page link, it will navigate to the home page when clicked. It is defined in the Index.cshtml file. -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <!-- This is the privacy page link, it will navigate to the privacy page when clicked. It is defined in the Privacy.cshtml file. -->
+                        </li>
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            <!-- This is the main content of the page, it will render the content of the page that is defined in the cshtml file. It is defined in the RenderBody() method. -->
+            <!-- THe content of the page is injected here-->
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - SportsStore_Spr2026 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
