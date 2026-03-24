@@ -1,4 +1,5 @@
 ﻿using SportsStore_Spr2026.Models;
+using System.Runtime.InteropServices;
 
 namespace SportsStore_Spr2026.Data
 {
@@ -11,6 +12,11 @@ namespace SportsStore_Spr2026.Data
         //need a method to get the product details from the database and return it to the caller.
         //so here it is 
         Product GetProductById(int id);
+        //add a way that we can add a product to the database
+        //create product
+
+        void CreateProduct(Product product);
+       
 
 
 
