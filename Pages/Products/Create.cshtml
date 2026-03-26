@@ -14,7 +14,7 @@
     
         <div class="form-group">
             <label>Name</label>
-            <input type ="text" class="form-control" id="Name" asp-for="product.Name" />
+            <input type ="text" class="form-control" id="Name" asp-for="product.Name" required />
          
         
         
@@ -23,7 +23,7 @@
     
         <div class="form-group">
             <label>Description</label>
-            <textarea class="form-control" id="Description" asp-for="product.Description" />
+            <textarea class="form-control" id="Description" asp-for="product.Description" required />
          
         
         
@@ -32,12 +32,12 @@
     
         <div class="form-group">
             <label>Price</label>
-            <input type="number" step="0.01" class="form-control" id="Price" asp-for="product.Price" />
+            <input type="number" step="0.01" class="form-control" id="Price" asp-for="product.Price" required />
         </div>
 
         <div class="form-group">
             <label>Thumbnail</label>
-            <input type="text" class="form-control" id="Thumbnail" asp-for="product.Thumbnail" />
+            <input type="text" class="form-control" id="Thumbnail" asp-for="product.thumbnail" required />
          
         
         
@@ -47,7 +47,7 @@
 
         <div class="form-group">
             <label>Image</label>
-            <input type="text" class="form-control" id="Image" asp-for="product.Image" />
+            <input type="text" class="form-control" id="Image" asp-for="product.image" required />
          
         
         

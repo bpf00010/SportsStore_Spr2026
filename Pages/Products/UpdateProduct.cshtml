@@ -1,0 +1,56 @@
+﻿@page
+@model SportsStore_Spr2026.Pages.Products.UpdateProductModel
+@{
+}
+
+<form method="post">
+    <div class="form-group">
+        <label>Product ID</label>
+        <input type="text" class="form-control" id="productID" asp-for="product.ProductID" hidden />
+    </div>
+
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" id="Name" asp-for="product.Name" required />
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <input type="text" class="form-control" id="Description" asp-for="product.Description" required />
+    </div>
+
+    <div class="form-group">
+        <label>Price</label>
+        <input type="number" step="0.01" class="form-control" id="Price" asp-for="product.Price" required />
+    </div>
+
+    <div class="form-group">
+        <label>Thumbnail</label>
+        <input type="text" class="form-control" id="Thumbnail" asp-for="product.Thumbnail" required />
+    </div>
+
+    <div class="form-group">
+        <label>Image</label>
+        <input type="text" class="form-control" id="Image" asp-for="product.Image" required />
+    </div>
+
+
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="PromoFront" asp-for="product.PromoFront" />
+        <label class="form-check-label" for="PromoFront">Promo Front</label>
+    </div>
+    <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="PromoFront" asp-for="product.PromoFront" />
+        <label class="form-check-label" for="PromoFront">Promo Front</label>
+    </div>
+
+
+    button type="submit" class="btn btn-primary">Update Product</button>">
+
+
+</form>
+
+
+
+
+<a herf="/Products/Index">Back to List of Products</a>

@@ -17,6 +17,8 @@ namespace SportsStore_Spr2026.Pages.Products
             _productRepository = productRepository;
         }
 
+        //Bind property is a way to bind a form to the backend of the application which can then take it to the OnPost and then plug it into the product variable.
+        [BindProperty]
         public Product product { get; set; }
         public void OnGet()
         {
@@ -28,6 +30,8 @@ namespace SportsStore_Spr2026.Pages.Products
         {
             //so we need to get the data from the form and then we can use it to create a product in the database.
             //use the ProductRepository to talk to the database and create a product in the database.
+
+            //the product gets plugged into the product variable and then we can use it to create a product in the database.
             _productRepository.CreateProduct(product);
 
 
