@@ -18,6 +18,8 @@ namespace SportsStore_Spr2026.Data
         void CreateProduct(Product product);
        
 
+        bool EditProduct(Product product);
+
 
 
 
