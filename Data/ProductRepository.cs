@@ -123,10 +123,7 @@ namespace SportsStore_Spr2026.Data
 
 
             return retrievedProduct;
-        } 
-
-
-
+        }
         
 
         public void CreateProduct(Product product)
