@@ -29,13 +29,18 @@ namespace SportsStore_Spr2026.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        //Identity roles allow you to group users and assign permissions to user groups. In this case you can have an admin role and a user role.
+
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
+            RoleManager<IdentityRole> roleManager,
             IEmailSender emailSender)
+
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -43,6 +48,7 @@ namespace SportsStore_Spr2026.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this._roleManager = roleManager;
         }
 
         /// <summary>
@@ -118,8 +124,47 @@ namespace SportsStore_Spr2026.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                if (!await _roleManager.RoleExistsAsync("Customer"))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole("Customer"));
+
+                    await _roleManager.CreateAsync(new IdentityRole("Admin"));
+
+                    //create an adminuser1@test.com
+                    var user2 = CreateUser();
+                    user2.Email = "administrator1@test.com";
+                    user2.UserName = "administrator1@test.com";
+
+                    var userCreated = await _userManager.CreateAsync(user2, "Test1234!");
+
+
+                    //create a account with the admin role, and then save the password as a hash in the database, and then use that password to login to the admin account, and then assign the admin role to the user.
+
+                    if(userCreated.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(user2, "Admin");
+                    }
+
+
+                    
+
+
+                }
+
+
                 if (result.Succeeded)
                 {
+                    //add the new user to the customer role
+                    await _userManager.AddToRoleAsync(user, "Customer");
+
+
+
+
+
+
+
+
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
