@@ -21,24 +21,16 @@ namespace SportsStore_Spr2026.Data
 
         public void AddToCart(string cartID, int prodID)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                using (var command = new SqlCommand("spAddToCart", connection))
-                {
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.AddWithValue("@CartID", cartID);
-                    command.Parameters.AddWithValue("@ProductID", prodID);
-                    command.Parameters.AddWithValue("@attributes", "none");
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
+            using var connection = new SqlConnection(_connectionString);
+            using var command = new SqlCommand("spAddToCart", connection);
 
-                
-                connection.Close();
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@cartID", cartID));
+            command.Parameters.Add(new SqlParameter("@prodID", prodID));
+            command.Parameters.Add(new SqlParameter("@attributes", "none"));
 
-
-            }
-
+            connection.Open();
+            command.ExecuteNonQuery();
         }
     }
 }

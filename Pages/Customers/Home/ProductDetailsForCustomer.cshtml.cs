@@ -41,18 +41,12 @@ namespace SportsStore_Spr2026.Pages.Customers.Home
 
         public IActionResult OnPost(string CartID, int ProductID)
         {
-
             if (ModelState.IsValid)
             {
                 _shoppingCartRepository.AddToCart(CartID, ProductID);
-
-
-
-
-
-
-                return RedirectToPage("Index");
+                return RedirectToPage("/Customers/Home/IndexForCustomer");
             }
+
             return Page();
 
 
