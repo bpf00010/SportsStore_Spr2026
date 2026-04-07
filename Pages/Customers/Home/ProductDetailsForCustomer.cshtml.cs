@@ -9,13 +9,13 @@ namespace SportsStore_Spr2026.Pages.Customers.Home
     public class ProductDetailsForCustomerModel : PageModel
     {
         private readonly IProductRepository _proudctRepository;
+        private readonly IShoppingCartRepository _shoppingCartRepository;
 
-        public ProductDetailsForCustomerModel(IProductRepository proudctRepository)
+        public ProductDetailsForCustomerModel(IProductRepository proudctRepository, IShoppingCartRepository shoppingCartRepository)
         {
 
             _proudctRepository = proudctRepository;
-
-
+            _shoppingCartRepository = shoppingCartRepository;
         }
 
 
@@ -32,6 +32,28 @@ namespace SportsStore_Spr2026.Pages.Customers.Home
 
             product = _proudctRepository.GetProductById(id);
 
+
+
+
+
+
+        }
+
+        public IActionResult OnPost(string CartID, int ProductID)
+        {
+
+            if (ModelState.IsValid)
+            {
+                _shoppingCartRepository.AddToCart(CartID, ProductID);
+
+
+
+
+
+
+                return RedirectToPage("Index");
+            }
+            return Page();
 
 
 
