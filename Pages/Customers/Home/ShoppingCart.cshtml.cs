@@ -18,6 +18,10 @@ namespace SportsStore_Spr2026.Pages.Customers.Home
 
 
         //create the cartitems
+
+        //bind property to the list of shopping cart items so we can display them on the page. needed for form 
+        //because we need to post the data back to the server when the user updates the cart.
+        [BindProperty]
         public List<ShoppingCart> CartItems { get; set; } = new List<ShoppingCart>();
 
 
@@ -32,6 +36,7 @@ namespace SportsStore_Spr2026.Pages.Customers.Home
 
         public void OnGet()
         {
+            //user has to be logged in to see the shopping cart. 
             CartID = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
 
             CartItems = _shoppingCartRepository.LoadCartItems(CartID, out decimal cartTotal);
@@ -46,6 +51,32 @@ namespace SportsStore_Spr2026.Pages.Customers.Home
 
 
 
+        }
+        public IActionResult OnPost()
+        {
+
+            CartID = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+
+            if (ModelState.IsValid)
+            {
+                foreach (var item in CartItems)
+                {
+                    _shoppingCartRepository.AddToCart(CartID, item.Quantity);
+
+
+
+
+                }
+
+
+                CartItems = _shoppingCartRepository.LoadCartItems(CartID, out decimal cartTotal);
+                CartTotal = cartTotal;
+
+
+
+            }
+
+            return Page();
         }
     }
 }

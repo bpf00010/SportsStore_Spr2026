@@ -10,7 +10,7 @@ namespace SportsStore_Spr2026.Data
 
         public List<ShoppingCart> LoadCartItems(string cartID, out decimal cartTotal);
 
-        
+        public void UpdateCartItem(string cartID, int prodID, int quantity);
 
 
     }

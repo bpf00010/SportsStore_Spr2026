@@ -45,7 +45,7 @@ namespace SportsStore_Spr2026.Data
             command.CommandType = System.Data.CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@cartID", cartID);
 
-           
+
             connection.Open();
 
             using var reader = command.ExecuteReader();
@@ -62,13 +62,29 @@ namespace SportsStore_Spr2026.Data
                 });
             }
 
-            
-            if (cartItems.Any())
-    {
-        cartTotal = cartItems.Sum(item => item.Subtotal);
-    }
 
-    return cartItems;
-}
+            if (cartItems.Any())
+            {
+                cartTotal = cartItems.Sum(item => item.Subtotal);
+            }
+
+            return cartItems;
+        }
+
+
+        public void UpdateCartItem(string cartID, int prodID, int quantity)
+        {
+            using var connection = new SqlConnection(_connectionString);
+            using var command = new SqlCommand("spUpdateCartItem", connection);
+
+            command.CommandType = System.Data.CommandType.StoredProcedure;
+            command.Parameters.Add(new SqlParameter("@cartID", cartID));
+            command.Parameters.Add(new SqlParameter("@prodID", prodID));
+            command.Parameters.Add(new SqlParameter("@quantity", quantity));
+            
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
+         
     }
 }

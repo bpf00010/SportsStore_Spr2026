@@ -27,8 +27,16 @@
                             <!-- This is the home page link, it will navigate to the home page when clicked. It is defined in the Index.cshtml file. -->
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Home/IndexForCustomer">Browse</a>
+                            <!-- Customer-facing product index -->
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Customers/Home/ShoppingCart">Cart</a>
+                            <!-- Customer-facing shopping cart -->
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Products/Index">Products</a>
-                            <!-- This is the privacy page link, it will navigate to the privacy page when clicked. It is defined in the Privacy.cshtml file. -->
+                            <!-- Admin/internal product list -->
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
